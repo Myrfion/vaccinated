@@ -16,7 +16,6 @@ EntryScreen.propTypes = {};
 
 async function onGoogleButtonPress() {
   const {idToken} = await GoogleSignin.signIn();
-
   const googleCredential = auth.GoogleAuthProvider.credential(idToken);
 
   return auth().signInWithCredential(googleCredential);

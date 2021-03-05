@@ -6,8 +6,9 @@ import QRCode from 'react-native-qrcode-svg';
 import COLORS from '../colors';
 
 Card.propTypes = {
-  picture: PropTypes.number.isRequired,
-  name: PropTypes.string.isRequired,
+  picture: PropTypes.instanceOf(Object).isRequired,
+  firstName: PropTypes.string.isRequired,
+  lastName: PropTypes.string.isRequired,
   birthDate: PropTypes.string.isRequired,
   id: PropTypes.string.isRequired,
   rootStyles: PropTypes.instanceOf(Object),
@@ -18,7 +19,7 @@ Card.defaultProps = {
 };
 
 function Card(props) {
-  const {picture, name, birthDate, id, rootStyles} = props;
+  const {picture, firstName, lastName, birthDate, id, rootStyles} = props;
 
   const card = useRef();
 
@@ -38,7 +39,10 @@ function Card(props) {
           </View>
         </View>
         <View style={styles.line} />
-        <Text style={styles.name}>Tymur {'\n'}Levtsun</Text>
+        <Text style={styles.name}>
+          {firstName} {'\n'}
+          {lastName}
+        </Text>
       </TouchableOpacity>
       <TouchableOpacity style={styles.back} onPress={() => card.current.flip()}>
         <QRCode size={250} value={id} backgroundColor={COLORS.card} />
